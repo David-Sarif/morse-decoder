@@ -51,10 +51,13 @@ function decode(expr) {
     for (let i=0;i<expr.length;i+=10){
         arr.push(expr.substr(i,10))
     }
-    // creating an array of dots and dashes
-    arr=arr.map(decrypt);
+    // creating an array of dots and dashes then creating array  of correct letters by using MORSE_TABLE and then joining them into 1 string
+    return arr.map(decrypt).map( elem  => MORSE_TABLE[elem]).join('');
+    
 
-    return arr.map(demorse).join('');
+    // arr=arr.map(decrypt);
+
+    // return arr.map( elem  => MORSE_TABLE[elem]).join('');
 
 
 }
@@ -66,9 +69,7 @@ function decrypt(str){
     }
     return newStr;
 }
-function demorse(str){
-    return MORSE_TABLE[str]
-}
+
 
 module.exports = {
     decode
